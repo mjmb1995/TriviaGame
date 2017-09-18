@@ -1,67 +1,104 @@
 var correct = 0;
 var incorrect = 0
 
-$(document).ready(function(){
+// game lasts 30 seconds
+var count= 30;
 
-	// starts when submit button is clicked
-    $("#submit").click(function(){
-    	// question 1 checker
-        if ($('input[name=question1]:checked').val() === "las") {
-        	correct++;
-        } 
-        else {
-        	incorrect++
-        }
-
-        // question 2 checker
-        if ($('input[name=question2]:checked').val() === "southWest") {
-        	correct++;
-        } 
-        else {
-        	incorrect++
-        }
-
-        // question 3 checker
-        if ($('input[name=question2]:checked').val() === "unitedAirlines") {
-        	correct++;
-        } 
-        else {
-        	incorrect++
-        }
-
-        // question 4 checker
-        if ($('input[name=question2]:checked').val() === "alaskaAirlines") {
-        	correct++;
-        } 
-        else {
-        	incorrect++
-        }
-
-         // question 5 checker
-        if ($('input[name=question2]:checked').val() === "125k") {
-        	correct++;
-        } 
-        else {
-        	incorrect++
-        }
-
-        //clear the timer and questions
-        $('#replace').empty();
-
-        var correctAns = $('<p>');
-        correctAns.append("Number of correct answers:  " + correct);
- 
-
-        var incorrectAns = $('<p>');
-        incorrectAns.append("Number of incorrect answers:  " + incorrect);
-
-        correctAns = correctAns.prepend(incorrectAns);
-
-        $('#replace').append(correctAns);
-
-        console.log(correct);
-        console.log(incorrect);
+var counter = setInterval(timer, 1000); //1000 will  run it every 1 second
 
 
-    });
+//answer checker
+function result() {
+	//stop counter
+	clearInterval(counter);
+
+		// question 1 checker
+    if ($('input[name=question1]:checked').val() === "las") {
+    	correct++;
+    } 
+    else {
+    	incorrect++
+    }
+
+    // question 2 checker
+    if ($('input[name=question2]:checked').val() === "southWest") {
+    	correct++;
+    } 
+    else {
+    	incorrect++
+    }
+
+    // question 3 checker
+    if ($('input[name=question2]:checked').val() === "unitedAirlines") {
+    	correct++;
+    } 
+    else {
+    	incorrect++
+    }
+
+    // question 4 checker
+    if ($('input[name=question2]:checked').val() === "alaskaAirlines") {
+    	correct++;
+    } 
+    else {
+    	incorrect++
+    }
+
+     // question 5 checker
+    if ($('input[name=question2]:checked').val() === "125k") {
+    	correct++;
+    } 
+    else {
+    	incorrect++
+    }
+
+    //clear the timer and questions
+    $('#replace').empty();
+
+    //creating p tag correct answers
+    var correctAns = $('<p>');
+    correctAns.append("Number of correct answers:  " + correct);
+
+    // creating p tag for incorrect answers
+    var incorrectAns = $('<p>');
+    incorrectAns.append("Number of incorrect answers:  " + incorrect);
+
+
+
+    var restart = $("<button>");
+    restart.addClass("restart");
+    restart.append("Play Again!");
+
+    correctAns = correctAns.append(incorrectAns).append(restart)
+
+    $('#replace').append(correctAns);
+}
+
+// reset the web page
+function reset() {
+	location.reload();
+}
+
+// countdown function
+function timer()
+{
+  count=count-1;
+  if (count <= 0)
+  {
+  	//when counter ends run result
+    result();
+  }
+  	// shows the timer on the html
+	document.getElementById("timer").innerHTML="Time left: " + count + " secs"; // watch for spelling
+}
+
+// game can end early by clicking on the submit button
+$("#submit").click(function(){
+	//when submit button is clicked run result
+	result();
+});
+
+$(".restart").click(function(){
+	//when submit button is clicked run result
+	reset();
 });
