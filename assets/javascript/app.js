@@ -63,12 +63,6 @@ function result() {
     var incorrectAns = $('<p>');
     incorrectAns.append("Number of incorrect answers:  " + incorrect);
 
-
-
-    var restart = $("<button>");
-    restart.addClass("restart");
-    restart.append("Play Again!");
-
     correctAns = correctAns.append(incorrectAns).append(restart)
 
     $('#replace').append(correctAns);
@@ -96,9 +90,4 @@ function timer()
 $("#submit").click(function(){
 	//when submit button is clicked run result
 	result();
-});
-
-$(".restart").click(function(){
-	//when submit button is clicked run result
-	reset();
 });
