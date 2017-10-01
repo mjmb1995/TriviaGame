@@ -63,15 +63,11 @@ function result() {
     var incorrectAns = $('<p>');
     incorrectAns.append("Number of incorrect answers:  " + incorrect);
 
-    correctAns = correctAns.append(incorrectAns).append(restart)
+    correctAns = correctAns.append(incorrectAns)
 
     $('#replace').append(correctAns);
 }
 
-// reset the web page
-function reset() {
-	location.reload();
-}
 
 // countdown function
 function timer()
